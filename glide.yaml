@@ -1,0 +1,6 @@
+package: github.com/abyanjksatu/kecci-golang-postgresql
+import:
+- package: github.com/lib/pq
+  version: ^1.0.0
+- package: github.com/gorilla/mux
+  version: ^1.7.0
