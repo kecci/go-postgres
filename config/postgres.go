@@ -9,10 +9,10 @@ import(
 )
 
 func GetPostgresDB() (*sql.DB, error){
-	host := os.Getenv("POSTGRES_HOST")
-	user := os.Getenv("POSTGRES_USER")
-	password := os.Getenv("POSTGRES_PASSWORD")
-	databaseName := os.Getenv("POSTGRES_DB_NAME")
+	host := os.Getenv("PGHOST")
+	user := os.Getenv("PGUSER")
+	password := os.Getenv("PGPASSWORD")
+	databaseName := os.Getenv("PGDATABASE")
 
 	desc := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable", host, user, databaseName)
 
