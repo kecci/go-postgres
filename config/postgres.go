@@ -9,15 +9,20 @@ import(
 )
 
 func GetPostgresDB() (*sql.DB, error){
+	databaseUrl := os.Getenv("DATABASE_URL")
 	host := os.Getenv("PGHOST")
 	user := os.Getenv("PGUSER")
 	password := os.Getenv("PGPASSWORD")
 	databaseName := os.Getenv("PGDATABASE")
 
-	desc := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable", host, user, databaseName)
+	desc := ""
 
-	if password != "" {
+	if databaseUrl != "" {
+		desc = databaseUrl
+	} else if password != "" {
 		desc = fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable", host, user, password, databaseName)		
+	} else {
+		desc = fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable", host, user, databaseName)
 	}
 
 	db, err := createConnection(desc)
