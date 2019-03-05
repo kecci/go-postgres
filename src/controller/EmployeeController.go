@@ -2,6 +2,7 @@ package controller
 
 import(
 	"fmt"
+	"os"
 	"encoding/json"
 	"log"
 	// "math/rand"
@@ -48,7 +49,8 @@ func HandleRequest() error {
 	// r.HandleFunc("/employee/{id}", deleteEmployee).Methods("DELETE")
 
 	// Start server
-	log.Fatal(http.ListenAndServe(":8000", r))
+	var port = os.Getenv("PORT")
+	log.Fatal(http.ListenAndServe(":"+port, r))
 
 	return nil
 }
